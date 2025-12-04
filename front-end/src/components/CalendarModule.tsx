@@ -9,11 +9,11 @@ function CalendarModule() {
 
 				// header (month + arrows)
 				"& .MuiPickersCalendarHeader-label": {
-					color: "#1976d2",
+					color: "white",
 					fontWeight: 600,
 				},
 				"& .MuiPickersArrowSwitcher-button": {
-					color: "#1976d2",
+					color: "white",
 				},
 
 				// weekday labels (Mon, Tue, etc.)

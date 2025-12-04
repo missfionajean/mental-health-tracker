@@ -4,6 +4,7 @@ import * as React from "react";
 // mui imports
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+import TextField from "@mui/material/TextField";
 
 // image & color imports
 import { basePalette } from "../ColorPalettes";
@@ -27,19 +28,20 @@ function DayTray() {
 	//   };
 
 	return (
-		<ToggleButtonGroup
-			value={emotions}
-			// onChange={handleSelect}
-			sx={{
-				display: "flex",
-				flexWrap: "wrap",
-				gap: 1,
-				"& .MuiToggleButton-root": {
-					flex: "1 1 calc(25% - 8px)",
-				},
-                marginInline: 2,
-			}}
-		>
+		<>
+			<ToggleButtonGroup
+				value={emotions}
+				// onChange={handleSelect}
+				sx={{
+					display: "flex",
+					flexWrap: "wrap",
+					gap: 1,
+					"& .MuiToggleButton-root": {
+						flex: "1 1 calc(25% - 8px)",
+					},
+					marginInline: 2,
+				}}
+			>
 				<ToggleButton value="happy">
 					<img
 						src={happyIcon}
@@ -96,7 +98,22 @@ function DayTray() {
 						style={{ width: 50, height: 50 }}
 					/>
 				</ToggleButton>
-		</ToggleButtonGroup>
+			</ToggleButtonGroup>
+			<TextField
+				id="outlined-multiline-static"
+				label="Comments"
+				multiline
+				rows={3}
+				defaultValue="Why did you feel this way today? (Optional)"
+				sx={{
+					margin: 2,
+					width: "calc(100% - 32px)",
+					'& .MuiInputBase-input': { color: 'white' },
+					'& .MuiInputLabel-root': { color: 'white' },
+                    '& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline': { borderColor: 'white' },
+				}}
+			/>
+		</>
 	);
 }
 
