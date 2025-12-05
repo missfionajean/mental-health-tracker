@@ -6,7 +6,7 @@ import DayTray from './components/DayTray';
 
 export default function DateCalendarReferenceDate() {
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
+    <LocalizationProvider dateAdapter={AdapterDayjs} sx={{ display: 'flex', flexDirection: 'column'}}>
         <CalendarModule />
         <DayTray />
     </LocalizationProvider>

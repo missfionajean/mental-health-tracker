@@ -5,17 +5,13 @@ import * as React from "react";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import TextField from "@mui/material/TextField";
+import { Button } from "@mui/material";
 
-// image & color imports
+// color palette import
 import { basePalette } from "../ColorPalettes";
-import happyIcon from "../assets/images/sample icons/happy.png";
-import relaxedIcon from "../assets/images/sample icons/relaxed.png";
-import angryIcon from "../assets/images/sample icons/angry.png";
-import tenseIcon from "../assets/images/sample icons/tense.png";
-import excitedIcon from "../assets/images/sample icons/excited.png";
-import boredIcon from "../assets/images/sample icons/bored.png";
-import depressedIcon from "../assets/images/sample icons/depressed.png";
-import sadIcon from "../assets/images/sample icons/sad.png";
+
+// buttons import
+import emotionButtons from "../EmotionButtons";
 
 function DayTray() {
 	const [emotions, setEmotions] = React.useState<string[]>(() => []);
@@ -27,78 +23,41 @@ function DayTray() {
 	//     setEmotions(newEmotions || []);
 	//   };
 
+	const buttonStyling = {
+		flexDirection: "column",
+		gap: "5px",
+		color: "white",
+	};
+
 	return (
 		<>
+            {/* Emotion Buttons */}
 			<ToggleButtonGroup
 				value={emotions}
 				// onChange={handleSelect}
 				sx={{
 					display: "flex",
 					flexWrap: "wrap",
-					gap: 1,
-					"& .MuiToggleButton-root": {
-						flex: "1 1 calc(25% - 8px)",
-					},
 					marginInline: 2,
 				}}
 			>
-				<ToggleButton value="happy">
-					<img
-						src={happyIcon}
-						alt="happy"
-						style={{ width: 50, height: 50 }}
-					/>
-				</ToggleButton>
-				<ToggleButton value="relaxed">
-					<img
-						src={relaxedIcon}
-						alt="relaxed"
-						style={{ width: 50, height: 50 }}
-					/>
-				</ToggleButton>
-				<ToggleButton value="excited">
-					<img
-						src={excitedIcon}
-						alt="excited"
-						style={{ width: 50, height: 50 }}
-					/>
-				</ToggleButton>
-				<ToggleButton value="angry">
-					<img
-						src={angryIcon}
-						alt="angry"
-						style={{ width: 50, height: 50 }}
-					/>
-				</ToggleButton>
-				<ToggleButton value="sad">
-					<img
-						src={sadIcon}
-						alt="sad"
-						style={{ width: 50, height: 50 }}
-					/>
-				</ToggleButton>
-				<ToggleButton value="depressed">
-					<img
-						src={depressedIcon}
-						alt="depressed"
-						style={{ width: 50, height: 50 }}
-					/>
-				</ToggleButton>
-				<ToggleButton value="tense">
-					<img
-						src={tenseIcon}
-						alt="tense"
-						style={{ width: 50, height: 50 }}
-					/>
-				</ToggleButton>
-				<ToggleButton value="bored">
-					<img
-						src={boredIcon}
-						alt="bored"
-						style={{ width: 50, height: 50 }}
-					/>
-				</ToggleButton>
+				{Object.entries(emotionButtons).map(([emotion, icon]) => (
+					<ToggleButton
+						value={emotion}
+						sx={buttonStyling}
+						key={emotion}
+					>
+						<img
+							src={icon}
+							alt={emotion}
+							style={{ width: 50, height: 50 }}
+						/>
+						{emotion}
+					</ToggleButton>
+				))}
 			</ToggleButtonGroup>
+
+            {/* Comments Text Field */}
 			<TextField
 				id="outlined-multiline-static"
 				label="Comments"
@@ -108,13 +67,91 @@ function DayTray() {
 				sx={{
 					margin: 2,
 					width: "calc(100% - 32px)",
-					'& .MuiInputBase-input': { color: 'white' },
-					'& .MuiInputLabel-root': { color: 'white' },
-                    '& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline': { borderColor: 'white' },
+					"& .MuiInputBase-input": { color: "white" },
+					"& .MuiInputLabel-root": { color: "white" },
+					"& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline":
+						{ borderColor: "white" },
 				}}
 			/>
+
+            {/* Save & Clear Buttons */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', margin: '0 16px 16px 16px' }}>
+                <Button variant="contained" color="primary">
+                    Save
+                </Button>
+                <Button variant="outlined" color="secondary">
+                    Clear
+                </Button>
+            </div>
 		</>
 	);
 }
 
 export default DayTray;
+
+{
+	/* <ToggleButton value="happy" sx={buttonStyling}>
+					<img
+						src={happyIcon}
+						alt="happy"
+						style={{ width: 50, height: 50 }}
+					/>
+					Happy
+				</ToggleButton>
+				<ToggleButton value="relaxed" sx={buttonStyling}>
+					<img
+						src={relaxedIcon}
+						alt="relaxed"
+						style={{ width: 50, height: 50 }}
+					/>
+					Relaxed
+				</ToggleButton>
+				<ToggleButton value="excited" sx={buttonStyling}>
+					<img
+						src={excitedIcon}
+						alt="excited"
+						style={{ width: 50, height: 50 }}
+					/>
+					Excited
+				</ToggleButton>
+				<ToggleButton value="angry" sx={buttonStyling}>
+					<img
+						src={angryIcon}
+						alt="angry"
+						style={{ width: 50, height: 50 }}
+					/>
+					Angry
+				</ToggleButton>
+				<ToggleButton value="sad" sx={buttonStyling}>
+					<img
+						src={sadIcon}
+						alt="sad"
+						style={{ width: 50, height: 50 }}
+					/>
+					Sad
+				</ToggleButton>
+				<ToggleButton value="depressed" sx={buttonStyling}>
+					<img
+						src={depressedIcon}
+						alt="depressed"
+						style={{ width: 50, height: 50 }}
+					/>
+					Depressed
+				</ToggleButton>
+				<ToggleButton value="tense" sx={buttonStyling}>
+					<img
+						src={tenseIcon}
+						alt="tense"
+						style={{ width: 50, height: 50 }}
+					/>
+					Tense
+				</ToggleButton>
+				<ToggleButton value="bored" sx={buttonStyling}>
+					<img
+						src={boredIcon}
+						alt="bored"
+						style={{ width: 50, height: 50 }}
+					/>
+					Bored
+				</ToggleButton> */
+}
